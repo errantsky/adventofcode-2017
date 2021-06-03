@@ -26,7 +26,8 @@ mod tests {
     use super::*;
 
     fn chars_to_int_vec(string: &str) -> Vec<u32> {
-        string.chars()
+        string
+            .chars()
             .map(|c| c.to_digit(10).unwrap())
             .collect::<Vec<u32>>()
     }
