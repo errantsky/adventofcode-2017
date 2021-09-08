@@ -1,3 +1,2 @@
 # Advent of Code 2017
-
-This repository contains my submissions for AoC 2017 using Rust. 
+To learn more about Rust, I decided to solve Advent of Code 2017 in Rust. This repo includes my solutions.
