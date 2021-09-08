@@ -1,6 +1,6 @@
-use std::io::{Lines, BufReader, BufRead};
-use std::fs::File;
 use std::collections::HashMap;
+use std::fs::File;
+use std::io::{BufRead, BufReader, Lines};
 
 fn part1(lines: Lines<BufReader<File>>) -> (i32, i32) {
     let mut registers: HashMap<String, i32> = HashMap::new();
@@ -19,18 +19,42 @@ fn part1(lines: Lines<BufReader<File>>) -> (i32, i32) {
             registers.insert(condition_register.clone(), 0);
         }
         match condition_operation.as_str() {
-            ">" => if !(registers[&condition_register] > condition_val) { continue },
-            "<" => if !(registers[&condition_register] < condition_val) { continue },
-            "==" => if !(registers[&condition_register] == condition_val) { continue },
-            ">=" => if !(registers[&condition_register] >= condition_val) { continue },
-            "<=" => if !(registers[&condition_register] <= condition_val) { continue },
-            "!=" => if !(registers[&condition_register] != condition_val) { continue },
-            _ => panic!("Wrong condition operation.")
+            ">" => {
+                if !(registers[&condition_register] > condition_val) {
+                    continue;
+                }
+            }
+            "<" => {
+                if !(registers[&condition_register] < condition_val) {
+                    continue;
+                }
+            }
+            "==" => {
+                if !(registers[&condition_register] == condition_val) {
+                    continue;
+                }
+            }
+            ">=" => {
+                if !(registers[&condition_register] >= condition_val) {
+                    continue;
+                }
+            }
+            "<=" => {
+                if !(registers[&condition_register] <= condition_val) {
+                    continue;
+                }
+            }
+            "!=" => {
+                if !(registers[&condition_register] != condition_val) {
+                    continue;
+                }
+            }
+            _ => panic!("Wrong condition operation."),
         }
         match command.as_str() {
             "inc" => *registers.entry(command_register.clone()).or_default() += command_val,
             "dec" => *registers.entry(command_register.clone()).or_default() -= command_val,
-            _ => panic!("Wrong command.")
+            _ => panic!("Wrong command."),
         }
         if *registers.values().max().unwrap() > max_val {
             max_val = *registers.values().max().unwrap();
@@ -39,23 +63,24 @@ fn part1(lines: Lines<BufReader<File>>) -> (i32, i32) {
     (*registers.values().max().unwrap(), max_val)
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
     #[test]
     fn test_sample1() {
-        let file = File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day8_test.txt").unwrap();
+        let file =
+            File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day8_test.txt")
+                .unwrap();
         let buffered = BufReader::new(file).lines();
         assert_eq!(part1(buffered).0, 1);
     }
 
     #[test]
     fn test_submission() {
-        let file = File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day8.txt").unwrap();
+        let file =
+            File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day8.txt").unwrap();
         let buffered = BufReader::new(file).lines();
         let res = part1(buffered);
         println!("Part1: {}\nPart2: {}", res.0, res.1);
     }
-
 }

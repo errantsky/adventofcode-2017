@@ -1,7 +1,6 @@
+use std::collections::{HashMap, HashSet};
 use std::fs::File;
-use std::io::{BufReader, BufRead};
-use std::collections::{HashSet, HashMap};
-
+use std::io::{BufRead, BufReader};
 
 fn solve_p1(mut banks: Vec<usize>) -> (usize, usize) {
     let mut steps = 0;
@@ -9,7 +8,8 @@ fn solve_p1(mut banks: Vec<usize>) -> (usize, usize) {
     let mut seen_banks: HashMap<Vec<usize>, usize> = HashMap::new();
     while !seen_banks.contains_key(&banks) {
         seen_banks.insert(banks.clone(), steps);
-        let (mut mid, mut mval) = banks.iter_mut()
+        let (mut mid, mut mval) = banks
+            .iter_mut()
             .enumerate()
             .max_by(|(i, n), (j, m)| {
                 if n == m {
@@ -17,7 +17,8 @@ fn solve_p1(mut banks: Vec<usize>) -> (usize, usize) {
                 } else {
                     n.cmp(m)
                 }
-            }).unwrap();
+            })
+            .unwrap();
         let blocks = *mval;
         *mval = 0;
         for i in 0..blocks {
@@ -28,9 +29,6 @@ fn solve_p1(mut banks: Vec<usize>) -> (usize, usize) {
     }
     (steps, steps - seen_banks.get(&banks).unwrap())
 }
-
-
-
 
 #[cfg(test)]
 mod tests {
@@ -44,14 +42,14 @@ mod tests {
 
     #[test]
     fn test_submission1() {
-        let file = File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day6.txt").unwrap();
+        let file =
+            File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day6.txt").unwrap();
         let mut buffered = BufReader::new(file);
         let inp = buffered.lines().next().unwrap().unwrap();
         // TODO try filter_map
-        let banks: Vec<usize> = inp.split(&"\t".to_string())
-            .map(|s| {
-                s.parse().unwrap()
-            })
+        let banks: Vec<usize> = inp
+            .split(&"\t".to_string())
+            .map(|s| s.parse().unwrap())
             .collect();
         let (a, b) = solve_p1(banks);
         println!("Part 1: {}, {}", a, b);

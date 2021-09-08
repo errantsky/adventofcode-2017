@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::io::{BufReader, BufRead};
+use std::io::{BufRead, BufReader};
 
 fn solve_part_1(mut list: Vec<i32>) -> usize {
     // ToDo proper way to check if two integers vars with different types
@@ -24,8 +24,7 @@ fn solve_part_2(mut list: Vec<i32>) -> usize {
         let offset = list[idx as usize];
         if offset >= 3 {
             list[idx as usize] -= 1;
-        }
-        else {
+        } else {
             list[idx as usize] += 1;
         }
         idx += offset;
@@ -35,10 +34,10 @@ fn solve_part_2(mut list: Vec<i32>) -> usize {
     steps
 }
 
-
 fn read_input() -> Vec<i32> {
     // ToDo the for loop did not work as a .map() called on .lines(). Why?
-    let file = File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day5.txt").unwrap();
+    let file =
+        File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day5.txt").unwrap();
     let buffered = BufReader::new(file);
     let mut list: Vec<i32> = Vec::new();
     for line in buffered.lines() {
@@ -48,8 +47,6 @@ fn read_input() -> Vec<i32> {
 
     list
 }
-
-
 
 #[cfg(test)]
 mod tests {

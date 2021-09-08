@@ -1,10 +1,13 @@
-use std::fs::File;
-use std::io::{BufReader, BufRead};
 use std::collections::{HashMap, HashSet};
+use std::fs::File;
 use std::hash::Hash;
+use std::io::{BufRead, BufReader};
 
-
-fn bfs(adjacency_map: &HashMap<u16, HashSet<u16>>, visited_nodes: &mut HashSet<u16>, start_node: u16) -> u16 {
+fn bfs(
+    adjacency_map: &HashMap<u16, HashSet<u16>>,
+    visited_nodes: &mut HashSet<u16>,
+    start_node: u16,
+) -> u16 {
     let mut stack: Vec<u16> = vec![start_node];
     let mut visited_node_count = 0;
 
@@ -18,10 +21,9 @@ fn bfs(adjacency_map: &HashMap<u16, HashSet<u16>>, visited_nodes: &mut HashSet<u
                 stack.push(n.clone());
             }
         }
-
     }
 
-    return visited_node_count
+    return visited_node_count;
 }
 
 fn bfs_alt(adjacency_map: HashMap<u16, HashSet<u16>>) -> u16 {
@@ -51,24 +53,20 @@ fn bfs_alt(adjacency_map: HashMap<u16, HashSet<u16>>) -> u16 {
         num_groups += 1;
     }
 
-
     return num_groups;
 }
-
 
 fn part1(adjacency_map: HashMap<u16, HashSet<u16>>) -> u16 {
     let mut vn: HashSet<u16> = HashSet::new();
     let cnt = bfs(&adjacency_map, &mut vn, 0);
-    return cnt
+    return cnt;
 }
 
 fn part2(adjacency_map: HashMap<u16, HashSet<u16>>) -> u16 {
-    return bfs_alt(adjacency_map)
+    return bfs_alt(adjacency_map);
 }
 
-
-
-fn read_input(path: &str) -> HashMap<u16, HashSet<u16>>{
+fn read_input(path: &str) -> HashMap<u16, HashSet<u16>> {
     let mut adjacency_map: HashMap<u16, HashSet<u16>> = HashMap::new();
     let file = File::open(path).unwrap();
     let buffered = BufReader::new(file).lines();
@@ -88,9 +86,8 @@ fn read_input(path: &str) -> HashMap<u16, HashSet<u16>>{
         }
     }
 
-    return adjacency_map
+    return adjacency_map;
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -98,7 +95,8 @@ mod tests {
 
     #[test]
     fn test_input_sample1() {
-        let adj_map = read_input("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day12_test.txt");
+        let adj_map =
+            read_input("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day12_test.txt");
         let count = part1(adj_map);
 
         assert_eq!(count, 6);
@@ -106,8 +104,8 @@ mod tests {
 
     #[test]
     fn test_input_sample2() {
-
-        let adj_map = read_input("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day12_test.txt");
+        let adj_map =
+            read_input("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day12_test.txt");
         let count = part2(adj_map);
 
         assert_eq!(count, 2);
@@ -117,14 +115,12 @@ mod tests {
     fn test_sub1_res() {
         let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day12.txt";
         assert_eq!(288, part1(read_input(path)));
-
     }
 
     #[test]
     fn test_sub2_res() {
         let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day12.txt";
         assert_eq!(211, part2(read_input(path)));
-
     }
 
     #[test]

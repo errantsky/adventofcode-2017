@@ -1,6 +1,5 @@
 use std::collections::HashSet;
 
-
 fn is_valid(passphrase: String) -> bool {
     let mut words_set = HashSet::new();
     for word in passphrase.split_whitespace() {
@@ -33,9 +32,9 @@ fn is_valid_advanced(passphrase: String) -> bool {
 
 #[cfg(test)]
 mod tests {
+    use super::*;
     use std::fs::File;
     use std::io::{BufRead, BufReader};
-    use super::*;
 
     #[test]
     fn p1test1() {

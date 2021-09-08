@@ -1,5 +1,5 @@
-use std::io::{BufReader, BufRead};
 use std::fs::File;
+use std::io::{BufRead, BufReader};
 
 fn solve_part1(stream: String) -> u32 {
     let mut letters = stream.chars().collect::<Vec<char>>();
@@ -15,7 +15,7 @@ fn solve_part1(stream: String) -> u32 {
             continue;
         }
         if garbage_flag && (letters[idx] != '>' && letters[idx] != '!') {
-            if letters[idx-1] != '!' {
+            if letters[idx - 1] != '!' {
                 garbage_count += 1;
             }
             continue;
@@ -24,34 +24,30 @@ fn solve_part1(stream: String) -> u32 {
             '{' => {
                 score += 1;
                 stack.push(letters[idx]);
-            },
+            }
             '}' => {
                 res += score;
                 score -= 1;
                 stack.pop();
-            },
+            }
             '<' => {
                 garbage_flag = true;
                 stack.push(letters[idx]);
-            },
+            }
             '>' => {
                 garbage_flag = false;
                 stack.pop();
-            },
+            }
             '!' => {
                 skip_flag = true;
-            },
-            _ => {
-
             }
+            _ => {}
         }
     }
 
     println!("Garbage count: {}", garbage_count);
     res
 }
-
-
 
 #[cfg(test)]
 mod tests {
@@ -132,7 +128,8 @@ mod tests {
     }
     #[test]
     fn test1_submission() {
-        let file = File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day9.txt").unwrap();
+        let file =
+            File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day9.txt").unwrap();
         let buffered = BufReader::new(file);
         let input = buffered.lines().next().unwrap().unwrap();
         println!("Part 1: {}", solve_part1(input));
