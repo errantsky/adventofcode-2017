@@ -121,7 +121,7 @@ fn parse_input(path: &str) -> Vec<Instruction> {
 }
 
 pub fn test_submission_part1() {
-    let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day23.txt";
+    let path = "src/inputs/day23.txt";
     let instruction_vec = parse_input(path);
     let mul_count = run_program(instruction_vec);
     println!("Part1: {}", mul_count);
@@ -135,14 +135,14 @@ mod tests {
 
     #[test]
     fn test_parse_input() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day23.txt";
+        let path = "src/inputs/day23.txt";
         let instruction_vec = parse_input(path);
         println!("Instructions: {:?}", instruction_vec);
     }
 
     #[test]
     fn test_submission_part1() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day23.txt";
+        let path = "src/inputs/day23.txt";
         let instruction_vec = parse_input(path);
         let mul_count = run_program(instruction_vec);
         println!("Part1: {}", mul_count);

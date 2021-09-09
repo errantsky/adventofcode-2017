@@ -71,21 +71,20 @@ mod tests {
 
     #[test]
     fn test_input_sample1() {
-        let scn =
-            read_input("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day13_test.txt");
+        let scn = read_input("src/inputs/day13_test.txt");
         assert_eq!(part1(scn), 24);
     }
 
     // #[test]
     // fn test_input_sample2() {
-    //     let scn = read_input("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day13_test.txt");
+    //     let scn = read_input("src/inputs/day13_test.txt");
     //     assert_eq!(part2(scn), 10);
 
     // }
 
     #[test]
     fn test_submission_1() {
-        let scn = read_input("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day13.txt");
+        let scn = read_input("src/inputs/day13.txt");
         println!("Part 1: {}", part1(scn));
     }
 }

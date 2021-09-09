@@ -55,8 +55,7 @@ mod tests {
     fn submission1() {
         // ToDo: try functional sum, per line reading, and all lines
         let mut count = 0;
-        let f =
-            File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day4.txt").unwrap();
+        let f = File::open("src/inputs/day4.txt").unwrap();
         let buffered = BufReader::new(f);
         for line in buffered.lines() {
             let mut l = line.unwrap();
@@ -104,8 +103,7 @@ mod tests {
     #[test]
     fn submission2() {
         let mut count = 0;
-        let f =
-            File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day4.txt").unwrap();
+        let f = File::open("src/inputs/day4.txt").unwrap();
         let buffered = BufReader::new(f);
         for line in buffered.lines() {
             let mut l = line.unwrap();

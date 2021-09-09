@@ -95,8 +95,7 @@ mod tests {
 
     #[test]
     fn test_input_sample1() {
-        let adj_map =
-            read_input("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day12_test.txt");
+        let adj_map = read_input("src/inputs/day12_test.txt");
         let count = part1(adj_map);
 
         assert_eq!(count, 6);
@@ -104,8 +103,7 @@ mod tests {
 
     #[test]
     fn test_input_sample2() {
-        let adj_map =
-            read_input("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day12_test.txt");
+        let adj_map = read_input("src/inputs/day12_test.txt");
         let count = part2(adj_map);
 
         assert_eq!(count, 2);
@@ -113,25 +111,25 @@ mod tests {
 
     #[test]
     fn test_sub1_res() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day12.txt";
+        let path = "src/inputs/day12.txt";
         assert_eq!(288, part1(read_input(path)));
     }
 
     #[test]
     fn test_sub2_res() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day12.txt";
+        let path = "src/inputs/day12.txt";
         assert_eq!(211, part2(read_input(path)));
     }
 
     #[test]
     fn test_submission_part1() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day12.txt";
+        let path = "src/inputs/day12.txt";
         println!("Part 1: {}", part1(read_input(path)));
     }
 
     #[test]
     fn test_submission_part2() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day12.txt";
+        let path = "src/inputs/day12.txt";
         println!("Part 1: {}", part2(read_input(path)));
     }
 }

@@ -68,17 +68,14 @@ mod tests {
     use super::*;
     #[test]
     fn test_sample1() {
-        let file =
-            File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day8_test.txt")
-                .unwrap();
+        let file = File::open("src/inputs/day8_test.txt").unwrap();
         let buffered = BufReader::new(file).lines();
         assert_eq!(part1(buffered).0, 1);
     }
 
     #[test]
     fn test_submission() {
-        let file =
-            File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day8.txt").unwrap();
+        let file = File::open("src/inputs/day8.txt").unwrap();
         let buffered = BufReader::new(file).lines();
         let res = part1(buffered);
         println!("Part1: {}\nPart2: {}", res.0, res.1);

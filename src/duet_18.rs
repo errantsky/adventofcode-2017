@@ -123,13 +123,13 @@ mod tests {
 
     #[test]
     fn test_parse_input() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day18_test.txt";
+        let path = "src/inputs/day18_test.txt";
         let instruction_vec = parse_input(path);
         println!("Instructions: {:?}", instruction_vec);
     }
     #[test]
     fn test_sample_part1() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day18_test.txt";
+        let path = "src/inputs/day18_test.txt";
         let instruction_vec = parse_input(path);
         let last_sound = run_program(instruction_vec);
         assert_eq!(last_sound, 4)
@@ -137,7 +137,7 @@ mod tests {
 
     #[test]
     fn test_submission_part1() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day18.txt";
+        let path = "src/inputs/day18.txt";
         let instruction_vec = parse_input(path);
         let last_sound = run_program(instruction_vec);
     }

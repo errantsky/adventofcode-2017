@@ -36,8 +36,7 @@ fn solve_part_2(mut list: Vec<i32>) -> usize {
 
 fn read_input() -> Vec<i32> {
     // ToDo the for loop did not work as a .map() called on .lines(). Why?
-    let file =
-        File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day5.txt").unwrap();
+    let file = File::open("src/inputs/day5.txt").unwrap();
     let buffered = BufReader::new(file);
     let mut list: Vec<i32> = Vec::new();
     for line in buffered.lines() {

@@ -92,7 +92,7 @@ mod tests {
 
     #[test]
     fn test_sample_part1() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day20_test.txt";
+        let path = "src/inputs/day20_test.txt";
         let mut particles = parse_input(path);
         let ticks_count = 5;
         for i in 0..ticks_count {
@@ -105,7 +105,7 @@ mod tests {
 
     #[test]
     fn test_submission_part1() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day20.txt";
+        let path = "src/inputs/day20.txt";
         let mut particles = parse_input(path);
         let ticks_count = 5000;
         for i in 0..ticks_count {
@@ -118,7 +118,7 @@ mod tests {
 
     #[test]
     fn test_sample_part2() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day20_test2.txt";
+        let path = "src/inputs/day20_test2.txt";
         let mut particles = parse_input(path);
         let ticks_count = 5;
         for i in 0..ticks_count {
@@ -132,7 +132,7 @@ mod tests {
 
     #[test]
     fn test_submission_part2() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day20.txt";
+        let path = "src/inputs/day20.txt";
         let mut particles = parse_input(path);
         let ticks_count = 5000;
         for i in 0..ticks_count {

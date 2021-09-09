@@ -77,8 +77,7 @@ mod tests {
     #[test]
     fn test_submission_part1() {
         let mut line: Vec<&str> = "a b c d e f g h i j k l m n o p".split(" ").collect();
-        let file =
-            File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day16.txt").unwrap();
+        let file = File::open("src/inputs/day16.txt").unwrap();
         let mut buffered = BufReader::new(file).lines();
         let l = buffered.next().unwrap().unwrap();
         let commands = l.split(",");

@@ -107,7 +107,7 @@ mod tests {
 
     #[test]
     fn test_sample_part1() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day19_test.txt";
+        let path = "src/inputs/day19_test.txt";
         let file = File::open(path).unwrap();
         let buffered = BufReader::new(file).lines();
         let mut lines: Vec<Vec<char>> = Vec::new();
@@ -129,7 +129,7 @@ mod tests {
 
     #[test]
     fn test_submission_part1() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day19.txt";
+        let path = "src/inputs/day19.txt";
         let file = File::open(path).unwrap();
         let buffered = BufReader::new(file).lines();
         let mut lines: Vec<Vec<char>> = Vec::new();

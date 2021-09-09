@@ -42,8 +42,7 @@ mod tests {
 
     #[test]
     fn test_submission1() {
-        let file =
-            File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day6.txt").unwrap();
+        let file = File::open("src/inputs/day6.txt").unwrap();
         let mut buffered = BufReader::new(file);
         let inp = buffered.lines().next().unwrap().unwrap();
         // TODO try filter_map

@@ -128,8 +128,7 @@ mod tests {
     }
     #[test]
     fn test1_submission() {
-        let file =
-            File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day9.txt").unwrap();
+        let file = File::open("src/inputs/day9.txt").unwrap();
         let buffered = BufReader::new(file);
         let input = buffered.lines().next().unwrap().unwrap();
         println!("Part 1: {}", solve_part1(input));

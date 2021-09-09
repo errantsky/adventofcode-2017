@@ -1,77 +1,85 @@
-// use std::fs::File;
-// use std::io::{BufReader, BufRead};
-// use std::collections::HashMap;
-//
-// fn part1(directions: String) -> u32 {
-//     let mut x_axis = 0;
-//     let mut y_axis = 0;
-//     let dir_moves = vec![
-//         ("n", (0, 1)),
-//         ("s", (0, -1)),
-//         ("ne", (1, 1)),
-//         ("nw", (-1, 1)),
-//         ("se", (1, -1)),
-//         ("sw", (-1, -1)),
-//     ];
-//     let mut dir_map: HashMap<String, (i32, i32)> = HashMap::new();
-//     dir_moves.map(|(dir, diff)| dir_map.insert(dir.to_string(), diff));
-//     directions.split(',').map(|direction| {
-//         let (dx, dy) = dir_map[direction.to_string()];
-//         x_axis += dx;
-//         y_axis += dy;
-//     });
-//     return x_axis + y_axis
-// }
-//
-// fn knapsack(destination: (i32, i32), weights: Vec<(String, (i32, i32))>) {
-//     let mut memo: HashMap<(i32, i32), f32> = HashMap::new();
-//     memo.insert((0, 0), 0.);
-//     for (_, (dx, dy)) in weights {
-//         memo.insert((dx, dy), 1.);
-//     }
-//     for i in 1..destination.0 {
-//         for j in 1..destination.1 {
-//             let mut temp_min = f32::MAX;
-//             for k in 0..weights.len() {
-//                 let (name, (x, y)) = &weights[k];
-//                 let res = dist((0, 0), (i + x, j + y));
-//                 if res < temp_min {
-//                     temp_min = res;
-//                     let nk = name;
-//                 }
-//             }
-//
-//
-//
-//         }
-//     }
-//
-// }
-//
-// fn dist(a: (i32, i32), b: (i32, i32)) -> f32 {
-//     f32::sqrt((a.0 - b.0).pow(2) + (a.1 - b.1).pow(2) as f32)
-// }
-// #[cfg(test)]
-// mod tests {
-//     use super::*;
-//     #[test]
-//     fn test1_1() {
-//         assert_eq!(part1(String::from("ne,ne,ne")), 3);
-//     }
-//     fn test1_2() {
-//         assert_eq!(part1(String::from("ne,ne,sw,sw")), 0);
-//     }
-//     fn test1_3() {
-//         assert_eq!(part1(String::from("ne,ne,s,s")), 2);
-//     }
-//     fn test1_4() {
-//         assert_eq!(part1(String::from("se,sw,se,sw,sw")), 3);
-//     }
-//
-//     fn submission1() {
-//         let file = File::open("/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day11.txt").unwrap();
-//         let buffered = BufReader::new(file);
-//         let input = buffered.lines().next().unwrap().unwrap();
-//         println!("Part1: {}", part1(input))
-//     }
-// }
+//   \ n  /
+// nw +--+  ne (x)
+//(z)/     \
+// -+      +-
+//   \     /
+// sw +--+ se
+//   / s  \
+//      (y)
+// https://www.redblobgames.com/grids/hexagons/
+
+use std::cmp::max;
+
+fn find_distance(input: Vec<&str>) -> usize {
+    let mut current_position: (isize, isize, isize) = (0, 0, 0);
+    let mut max_dist: usize = 0;
+    for step in input {
+        current_position = match step {
+            "n" => (
+                current_position.0 - 1,
+                current_position.1,
+                current_position.2 + 1,
+            ),
+            "nw" => (
+                current_position.0 - 1,
+                current_position.1 + 1,
+                current_position.2,
+            ),
+            "ne" => (
+                current_position.0,
+                current_position.1 - 1,
+                current_position.2 + 1,
+            ),
+            "s" => (
+                current_position.0 + 1,
+                current_position.1,
+                current_position.2 - 1,
+            ),
+            "se" => (
+                current_position.0 + 1,
+                current_position.1 - 1,
+                current_position.2,
+            ),
+            "sw" => (
+                current_position.0,
+                current_position.1 + 1,
+                current_position.2 - 1,
+            ),
+            _ => panic!("D'oh!"),
+        };
+        max_dist = max(max_dist, hex_dist(current_position));
+    }
+    println!("Part 2: {}", max_dist);
+    hex_dist(current_position)
+}
+
+fn hex_dist(current_position: (isize, isize, isize)) -> usize {
+    ((current_position.0.abs() + current_position.1.abs() + current_position.2.abs()) / 2) as usize
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::fs::File;
+    use std::io::{BufRead, BufReader};
+
+    #[test]
+    fn test_sample_part1() {
+        let path = "src/inputs/day11_test.txt";
+        let file = File::open(path).unwrap();
+        let input = BufReader::new(file).lines().next().unwrap();
+        let input = input.unwrap();
+        let input = input.split(",").collect::<Vec<_>>();
+        assert_eq!(find_distance(input), 3);
+    }
+
+    #[test]
+    fn test_submission_part1() {
+        let path = "src/inputs/day11.txt";
+        let file = File::open(path).unwrap();
+        let input = BufReader::new(file).lines().next().unwrap();
+        let input = input.unwrap();
+        let input = input.split(",").collect::<Vec<_>>();
+        println!("Part 1: {}", find_distance(input));
+    }
+}

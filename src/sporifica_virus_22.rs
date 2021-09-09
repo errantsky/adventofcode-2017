@@ -117,14 +117,14 @@ mod tests {
 
     #[test]
     fn test_parse_input() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day22_test.txt";
+        let path = "src/inputs/day22_test.txt";
         let grid_map = parse_input(path);
         println!("{:?}", grid_map);
     }
 
     #[test]
     fn test_sample_part1() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day22_test.txt";
+        let path = "src/inputs/day22_test.txt";
         let mut grid_map = parse_input(path);
         let burst_count = 7;
         let mut infected_count = 0;
@@ -140,7 +140,7 @@ mod tests {
 
     #[test]
     fn test_submission_part1() {
-        let path = "/Users/sep/CLionProjects/adventofcode-2017/src/inputs/day22.txt";
+        let path = "src/inputs/day22.txt";
         let mut grid_map = parse_input(path);
         let burst_count = 10000;
         let mut infected_count = 0;
